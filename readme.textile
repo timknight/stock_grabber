@@ -1,0 +1,18 @@
+h1. Readme File
+
+Pulls stock information from Yahoo given a stock system.
+
+<pre>
+@stock = StockGrabber.new("GOOG")@
+@puts stock.symbol               # => GOOG@
+@puts stock.company              # => GOOGLE@
+@puts stock.last_traded_price    # => 529.64@
+@puts stock.last_traded_date     # => 2/15/2008@
+@puts stock.last_traded_time     # => 4:00pm@
+@puts stock.change               # => -2.61@
+@puts stock.opening_price        # => 529.98@
+@puts stock.days_high            # => 532.66@
+@puts stock.days_low             # => 524.33@
+@puts stock.volume               # => 5201028@
+@puts stock.exchange             # => US@
+</pre>
