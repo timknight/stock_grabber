@@ -1,6 +1,6 @@
 h1. Readme File
 
-Pulls stock information from Yahoo given a stock system.
+Pulls stock information from Yahoo given a stock ticker.
 
 <pre>
 @stock = StockGrabber.new("GOOG")@
