@@ -1,53 +1,23 @@
-#!/usr/bin/env ruby
-
 class StockGrabber
   require 'net/http'
+  attr_accessor :symbol, :company, :last_traded_price, :last_traded_date, :last_traded_time, :change, :opening_price, :days_high, :days_low, :volume, :exchange
 
   def initialize(stock)
-    @pricesheet = Net::HTTP.get('download.finance.yahoo.com', '/d/quotes.csv?s='+stock+'&f=snl1d1t1c1ohgv&e=.csv').chop.split(",")
+    pricesheet          = Net::HTTP.get('download.finance.yahoo.com', '/d/quotes.csv?s='+stock+'&f=snl1d1t1c1ohgv&e=.csv').chop.split(",")
+    @symbol             = pricesheet[0].gsub("\"","")
+    @company            = pricesheet[1].gsub("\"","")
+    @last_traded_price  = pricesheet[2]
+    @last_traded_date   = pricesheet[3].gsub("\"","")
+    @last_traded_time   = pricesheet[4].gsub("\"","")
+    @change             = pricesheet[5]
+    @opening_price      = pricesheet[6]
+    @days_high          = pricesheet[7]
+    @days_low           = pricesheet[8]
+    @volume             = pricesheet[9]
+    @exchange           = get_exchange
   end
-  
-  def symbol
-    @pricesheet[0].gsub("\"","")
-  end
-  
-  def company
-    @pricesheet[1].gsub("\"","")
-  end
-  
-  def last_traded_price
-    @pricesheet[2]
-  end
-  
-  def last_traded_date
-    @pricesheet[3].gsub("\"","")
-  end
-  
-  def last_traded_time
-    @pricesheet[4].gsub("\"","")
-  end
-  
-  def change
-    @pricesheet[5]
-  end
-  
-  def opening_price
-    @pricesheet[6]
-  end
-  
-  def days_high
-    @pricesheet[7]
-  end
-  
-  def days_low
-    @pricesheet[8]
-  end
-  
-  def volume
-    @pricesheet[9]
-  end
-  
-  def exchange
+
+  def get_exchange
     case
       when self.symbol[-2,2] == ".M"   then "Montreal"
       when self.symbol[-2,2] == ".V"   then "Vancouver"
@@ -56,5 +26,4 @@ class StockGrabber
       else "US"
     end
   end
-  
 end
