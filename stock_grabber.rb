@@ -14,10 +14,10 @@ class StockGrabber
     @days_high          = pricesheet[7]
     @days_low           = pricesheet[8]
     @volume             = pricesheet[9]
-    @exchange           = get_exchange
+    @exchange           = exchange
   end
 
-  def get_exchange
+  def exchange
     case
       when self.symbol[-2,2] == ".M"   then "Montreal"
       when self.symbol[-2,2] == ".V"   then "Vancouver"
