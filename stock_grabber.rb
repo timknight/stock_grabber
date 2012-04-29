@@ -1,8 +1,8 @@
 class StockGrabber
   require 'net/http'
-  attr_accessor :symbol, :company, :last_traded_price, :last_traded_date, 
+  attr_reader   :symbol, :company, :last_traded_price, :last_traded_date, 
                 :last_traded_time, :change, :opening_price, :days_high, 
-                :days_low, :volume, :exchange
+                :days_low, :volume
 
   def initialize stock
     pricesheet          = get stock
@@ -19,14 +19,6 @@ class StockGrabber
     @exchange           = exchange
   end
 
-  private ## ---------------------------------------------------------------
-
-  def get stock
-    Net::HTTP.get('download.finance.yahoo.com', 
-                  '/d/quotes.csv?s='+stock+'&f=snl1d1t1c1ohgv&e=.csv')
-                  .chop.split(",")
-  end
-
   def exchange
     case
       when self.symbol[-2,2] == ".M"   then "Montreal"
@@ -36,4 +28,14 @@ class StockGrabber
       else "US"
     end
   end
+
+  private ## ---------------------------------------------------------------
+
+  def get stock
+    Net::HTTP.get('download.finance.yahoo.com', 
+                  '/d/quotes.csv?s='+stock+'&f=snl1d1t1c1ohgv&e=.csv')
+                  .chop.split(",")
+  end
+
+  
 end
