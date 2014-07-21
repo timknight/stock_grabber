@@ -7,18 +7,18 @@ class StockGrabber
                 :days_low, :volume
 
   def initialize(stock)
-    pricesheet          = get stock
-    @symbol             = pricesheet[0]
-    @company            = pricesheet[1]
-    @last_traded_price  = pricesheet[2]
-    @last_traded_date   = pricesheet[3]
-    @last_traded_time   = pricesheet[4]
-    @change             = pricesheet[5]
-    @opening_price      = pricesheet[6]
-    @days_high          = pricesheet[7]
-    @days_low           = pricesheet[8]
-    @volume             = pricesheet[9]
-    @exchange           = exchange
+    pricesheet         = get stock
+    @symbol            = pricesheet[0]
+    @company           = pricesheet[1]
+    @last_traded_price = pricesheet[2]
+    @last_traded_date  = pricesheet[3]
+    @last_traded_time  = pricesheet[4]
+    @change            = pricesheet[5]
+    @opening_price     = pricesheet[6]
+    @days_high         = pricesheet[7]
+    @days_low          = pricesheet[8]
+    @volume            = pricesheet[9]
+    @exchange          = exchange
   end
 
   def exchange
