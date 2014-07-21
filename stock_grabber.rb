@@ -1,16 +1,18 @@
 class StockGrabber
   require 'net/http'
+  require 'csv'
+
   attr_reader   :symbol, :company, :last_traded_price, :last_traded_date, 
                 :last_traded_time, :change, :opening_price, :days_high, 
                 :days_low, :volume
 
-  def initialize stock
+  def initialize(stock)
     pricesheet          = get stock
-    @symbol             = pricesheet[0].gsub("\"","")
-    @company            = pricesheet[1].gsub("\"","")
+    @symbol             = pricesheet[0]
+    @company            = pricesheet[1]
     @last_traded_price  = pricesheet[2]
-    @last_traded_date   = pricesheet[3].gsub("\"","")
-    @last_traded_time   = pricesheet[4].gsub("\"","")
+    @last_traded_date   = pricesheet[3]
+    @last_traded_time   = pricesheet[4]
     @change             = pricesheet[5]
     @opening_price      = pricesheet[6]
     @days_high          = pricesheet[7]
@@ -31,11 +33,8 @@ class StockGrabber
 
   private ## ---------------------------------------------------------------
 
-  def get stock
-    Net::HTTP.get('download.finance.yahoo.com', 
-                  '/d/quotes.csv?s='+stock+'&f=snl1d1t1c1ohgv&e=.csv')
-                  .chop.split(",")
+  def get(stock)
+    Net::HTTP.get('download.finance.yahoo.com', '/d/quotes.csv?s='+stock+'&f=snl1d1t1c1ohgv&e=.csv').parse_csv
   end
 
-  
 end
