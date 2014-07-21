@@ -22,11 +22,11 @@ class StockGrabber
   end
 
   def exchange
-    case
-      when symbol[-2,2] == ".M"   then "Montreal"
-      when symbol[-2,2] == ".V"   then "Vancouver"
-      when symbol[-3,3] == ".TO"  then "Toronto"
-      when symbol[-3,3] == ".AL"  then "Alberta"
+    case symbol.split(".").last
+      when "M"   then "Montreal"
+      when "V"   then "Vancouver"
+      when "TO"  then "Toronto"
+      when "AL"  then "Alberta"
       else "US"
     end
   end
@@ -38,3 +38,6 @@ class StockGrabber
   end
 
 end
+
+stock = StockGrabber.new("ENB.PF.V")
+puts stock.inspect
