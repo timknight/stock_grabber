@@ -23,10 +23,10 @@ class StockGrabber
 
   def exchange
     case
-      when self.symbol[-2,2] == ".M"   then "Montreal"
-      when self.symbol[-2,2] == ".V"   then "Vancouver"
-      when self.symbol[-3,3] == ".TO"  then "Toronto"
-      when self.symbol[-3,3] == ".AL"  then "Alberta"
+      when symbol[-2,2] == ".M"   then "Montreal"
+      when symbol[-2,2] == ".V"   then "Vancouver"
+      when symbol[-3,3] == ".TO"  then "Toronto"
+      when symbol[-3,3] == ".AL"  then "Alberta"
       else "US"
     end
   end
