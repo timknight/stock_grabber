@@ -34,7 +34,7 @@ class StockGrabber
   private ## ---------------------------------------------------------------
 
   def get(stock)
-    Net::HTTP.get('download.finance.yahoo.com', '/d/quotes.csv?s='+stock+'&f=snl1d1t1c1ohgv&e=.csv').parse_csv
+    Net::HTTP.get("download.finance.yahoo.com", "/d/quotes.csv?s=#{stock}&f=snl1d1t1c1ohgv&e=.csv").parse_csv
   end
 
 end
