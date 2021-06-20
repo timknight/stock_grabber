@@ -1,4 +1,4 @@
-This project requirers the use of Yahoo Finance's API form `download.finance.yahoo.com` which as of January 2018 is not longer available. This project has been archived and moved over to read-only for reference use only.
+This project requires the use of Yahoo Finance's API from `download.finance.yahoo.com` which as of January 2018 is no longer available. This project has been archived and moved over to read-only for reference use only.
 
 # Readme File
 
