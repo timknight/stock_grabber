@@ -1,3 +1,5 @@
+This project requirers the use of Yahoo Finance's API form `download.finance.yahoo.com` which as of January 2018 is not longer available. This project has been archived and moved over to read-only for reference use only.
+
 # Readme File
 
 Pulls stock information from Yahoo Finance given a stock ticker.
